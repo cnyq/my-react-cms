@@ -7,6 +7,7 @@
 import loadable from '@/router/loadable' //组件进行异步加载处理
 
 const generatedRouter = []
+const routeGather = []
 const generatedRouterMap = {}
 const modulesList = []
 const shieldRouter = ['demo'] //屏蔽文件名为demo的文件导入路由对象
@@ -30,8 +31,28 @@ modulesList.forEach(path => {
       path: '/' + name,
       component: loadable(() => import('@/pages/' + path))
     })
+    routeGather.push({
+      path: '/' + name,
+      auth: true
+    })
   }
 })
-
-
-export default generatedRouter
+const defaultRouteArr = [
+  {
+    path: '/login',
+    auth: false
+  },
+  {
+    path: '/404',
+    auth: false
+  },
+  {
+    path: '/',
+    auth: true
+  }
+] 
+routeGather.push(...defaultRouteArr)
+export {
+  generatedRouter,
+  routeGather
+}
