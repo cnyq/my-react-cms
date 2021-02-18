@@ -12,7 +12,7 @@ class PrivateRoute extends Component {
         return item.path.replace(/\s*/g,"") === pathname
       }
     );
-    //合法路由不需要登录直接进
+    //合法路由&&不需要登录直接进
     if (correctRouter && !correctRouter.auth && !isAuthenticated) {
       return <Route exact path={pathname} component={component} />
     }

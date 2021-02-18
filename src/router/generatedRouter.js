@@ -1,7 +1,7 @@
 /*
  * @Author       : yanqun
  * @Date         : 2021-02-05 11:13:01
- * @LastEditTime : 2021-02-05 15:49:27
+ * @LastEditTime : 2021-02-18 22:04:39
  * @Description  : 获取pages文件夹下的所有文件生成路由对象，components文件下的js不载入路由对象;注：本架子使用文件名作为路由
  */
 import loadable from '@/router/loadable' //组件进行异步加载处理
@@ -16,7 +16,6 @@ const modulesFiles = require.context('@/pages', true, /\.js$/, 'lazy')
 modulesFiles.keys().forEach((modulePath) => {
   modulesList.push(modulePath.replace(/^\.\/(.*)\.\w+$/, '$1'))
 })
-
 modulesList.forEach(path => {
   const pathList = path.split('/')
   if (pathList[0] === 'components' || shieldRouter.includes(pathList[pathList.length - 1])) return false
