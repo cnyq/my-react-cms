@@ -5,8 +5,38 @@ import { menus as MENUS } from '@/components/assets/mock'
 const { SubMenu } = Menu;
 @withRouter
 class Sider extends Component {
-  handleClick = e => {
-    console.log('click ', e);
+  state = {
+    openKeys: [],
+    selectedKeys: []
+  }
+  changeMenuKeys = (nextProps)=> {
+    const { pathname } = nextProps ? nextProps.location : this.props.location
+    let obj = MENUS.find(it => {
+      if (it.key == pathname) {
+        return it
+      } else {
+        if (it.subs) {
+          return it.subs.find(its => its.key == pathname)
+        }
+      }
+    })
+    this.setState({
+      selectedKeys: [pathname],
+      openKeys: obj.subs ? [obj.key] : []
+    })
+  }
+  componentDidMount() {
+    this.changeMenuKeys()
+  }
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    this.changeMenuKeys(nextProps)
+  }
+  // static getDerivedStateFromProps(nextProps) {
+  // }
+  onOpenChange = (openKeys) => {
+    this.setState({
+      openKeys
+    })
   };
   renderMenuItem = ({ key, icon, title, }) => {
     return (
@@ -30,16 +60,17 @@ class Sider extends Component {
     )
   }
   render() {
-    console.log(this.props)
+    const { openKeys, selectedKeys } = this.state
     return (
-      <div style={{ height: '100vh', overflowY: 'scroll', overflowX: 'hidden', boxShadow: '2px 0 6px #4a4a4a' }}>
+      <div style={{ height: '100vh', overflowY: 'auto', overflowX: 'hidden', boxShadow: '2px 0 6px #4a4a4a' }}>
         <div style={styles.logoFont}>{this.props.collapsed ? 'YQ' : 'CNYANQUN'}</div>
         <Menu
-          onClick={this.handleClick}
-          defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub1']}
-          style={{ width: 200 }}
-          mode="inline"
+          onOpenChange={(openKeys)=>{this.setState({openKeys})}}
+          onClick={({key}) => this.setState({selectedKeys: [key]})}
+          openKeys={openKeys}
+          selectedKeys={selectedKeys}
+          // style={{ width: 200 }}
+          mode={ this.props.collapsed ? 'vertical' : 'inline'}
         >
           {
             MENUS && MENUS.map(item => {
