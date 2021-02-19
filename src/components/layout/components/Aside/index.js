@@ -1,48 +1,64 @@
 import React, { Component } from 'react'
-import { Menu } from 'antd';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-
+import { Menu, Icon } from 'antd'
+import { Link, withRouter } from 'react-router-dom'
+import { menus as MENUS } from '@/components/assets/mock'
 const { SubMenu } = Menu;
-export default class Sider extends Component {
+@withRouter
+class Sider extends Component {
   handleClick = e => {
     console.log('click ', e);
   };
-
-  render() {
+  renderMenuItem = ({ key, icon, title, }) => {
     return (
-      <Menu
-        onClick={this.handleClick}
-        style={{ width: 256 }}
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
-        mode="inline"
-      >
-        <Menu.Item key="13">Option 1</Menu.Item>
-        <SubMenu key="sub1" icon={<MailOutlined />} title="Navigation One">
-          <Menu.ItemGroup key="g1" title="Item 1">
-            <Menu.Item key="1">Option 1</Menu.Item>
-            <Menu.Item key="2">Option 2</Menu.Item>
-          </Menu.ItemGroup>
-          <Menu.ItemGroup key="g2" title="Item 2">
-            <Menu.Item key="3">Option 3</Menu.Item>
-            <Menu.Item key="4">Option 4</Menu.Item>
-          </Menu.ItemGroup>
-        </SubMenu>
-        <SubMenu key="sub2" icon={<AppstoreOutlined />} title="Navigation Two">
-          <Menu.Item key="5">Option 5</Menu.Item>
-          <Menu.Item key="6">Option 6</Menu.Item>
-          <SubMenu key="sub3" title="Submenu">
-            <Menu.Item key="7">Option 7</Menu.Item>
-            <Menu.Item key="8">Option 8</Menu.Item>
-          </SubMenu>
-        </SubMenu>
-        <SubMenu key="sub4" icon={<SettingOutlined />} title="Navigation Three">
-          <Menu.Item key="9">Option 9</Menu.Item>
-          <Menu.Item key="10">Option 10</Menu.Item>
-          <Menu.Item key="11">Option 11</Menu.Item>
-          <Menu.Item key="12">Option 12</Menu.Item>
-        </SubMenu>
-      </Menu>
+      <Menu.Item key={key}>
+        <Link to={key}>
+          {icon}
+          <span>{title}</span>
+        </Link>
+      </Menu.Item>
+    )
+  }
+  renderSubMenu = ({ key, icon, title, subs }) => {
+    return (
+      <SubMenu key={key} title={<span>{icon}<span>{title}</span></span>}>
+        {
+          subs && subs.map(item => {
+            return item.subs && item.subs.length > 0 ? this.renderSubMenu(item) : this.renderMenuItem(item)
+          })
+        }
+      </SubMenu>
+    )
+  }
+  render() {
+    console.log(this.props)
+    return (
+      <div style={{ height: '100vh', overflowY: 'scroll', overflowX: 'hidden', boxShadow: '2px 0 6px #4a4a4a' }}>
+        <div style={styles.logoFont}>{this.props.collapsed ? 'YQ' : 'CNYANQUN'}</div>
+        <Menu
+          onClick={this.handleClick}
+          defaultSelectedKeys={['1']}
+          defaultOpenKeys={['sub1']}
+          style={{ width: 200 }}
+          mode="inline"
+        >
+          {
+            MENUS && MENUS.map(item => {
+              return item.subs && item.subs.length > 0 ? this.renderSubMenu(item) : this.renderMenuItem(item)
+            })
+          }
+        </Menu>
+      </div>
     );
   }
 }
+
+const styles = {
+  logoFont: {
+    textAlign: 'center',
+    fontSize: '14px',
+    fontWeight: 'bold',
+    lineHeight: '64px'
+  }
+}
+
+export default Sider

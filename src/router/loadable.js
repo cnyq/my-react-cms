@@ -12,7 +12,7 @@ NProgress.configure({
 })
 
 class LoadingPage extends React.Component {
-  componentWillMount(){
+  UNSAFE_componentWillMount(){
     NProgress.start()
   }
   componentWillUnmount(){

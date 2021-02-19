@@ -32,7 +32,7 @@ const webpackConfigDev = {
     historyApiFallback: false,
     open: true,
     hot: true,
-    port: 3000,
+    port: 9527,
   },
 
 }
