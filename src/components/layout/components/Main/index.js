@@ -7,7 +7,7 @@ import PrivateRoute from '@/router/privateRoute'
 export default class Main extends Component {
   render() {
     return (
-      <div>
+      <div className="main">
         <Switch>
           {generatedRouter.map(it => (
             <PrivateRoute path={it.path} component={it.component} key={it.name}></PrivateRoute>

@@ -25,4 +25,37 @@
   .ant-layout-sider {
     background: #fff;
   }
+
+  .ant-breadcrumb-link {
+    a {
+      color: #52b1ff;
+
+      &:hover {
+        color: #40a9ff;
+      }
+    }
+  }
+
+  .ant-layout-footer {
+    padding: 0;
+    text-align: center;
+    line-height: 40px;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .ant-layout-content {
+    box-sizing: border-box;
+    padding: 20px 20px 0 20px;
+    .main {
+      background: #fff;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 20px;
+    }
+  }
 }

@@ -1,8 +1,8 @@
 /*
  * @Author       : yanqun
  * @Date         : 2021-02-19 15:49:05
- * @LastEditTime : 2021-02-19 22:17:19
- * @Description  : 面包屑/左侧导航
+ * @LastEditTime : 2021-02-20 15:28:14
+ * @Description  : menu
  */
 
 import React from 'react'
@@ -21,7 +21,7 @@ const menus = [
     icon: <AuditOutlined />,
     key: 'userManage',
     subs: [
-      {key: '/userList', title: '用户列表', icon: '',},
+      {key: '/user', title: '用户列表', icon: '',}
     ]
   },
 ]

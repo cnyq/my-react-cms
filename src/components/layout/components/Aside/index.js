@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Menu, Icon } from 'antd'
 import { Link, withRouter } from 'react-router-dom'
 import { menus as MENUS } from '@/components/assets/mock'
+import {findMenu } from '@/utils/particular'
 const { SubMenu } = Menu;
 @withRouter
 class Sider extends Component {
@@ -11,18 +12,10 @@ class Sider extends Component {
   }
   changeMenuKeys = (nextProps)=> {
     const { pathname } = nextProps ? nextProps.location : this.props.location
-    let obj = MENUS.find(it => {
-      if (it.key == pathname) {
-        return it
-      } else {
-        if (it.subs) {
-          return it.subs.find(its => its.key == pathname)
-        }
-      }
-    })
+    let { firstMenu } = findMenu(pathname)
     this.setState({
       selectedKeys: [pathname],
-      openKeys: obj.subs ? [obj.key] : []
+      openKeys: firstMenu && firstMenu.subs ? [firstMenu.key] : []
     })
   }
   componentDidMount() {
@@ -41,7 +34,7 @@ class Sider extends Component {
   renderMenuItem = ({ key, icon, title, }) => {
     return (
       <Menu.Item key={key}>
-        <Link to={key}>
+        <Link to={key} replace>
           {icon}
           <span>{title}</span>
         </Link>
