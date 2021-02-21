@@ -9,8 +9,8 @@ class Router extends Component {
   render() {
     return (
       <Switch>
-        <PrivateRoute path='/login' component={Login}/>
-        <PrivateRoute path='/404' component={ErrorPage}/>
+        <Route path='/login' component={Login}/>
+        <Route path='/404' component={ErrorPage}/>
         <PrivateRoute path='/' component={Index}/>
       </Switch>
     )

@@ -1,0 +1,160 @@
+#login-page {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #DEF3F4;
+  z-index: 99;
+
+  .container {
+    position: relative;
+    width: 240px;
+    height: 300px;
+    padding: 100px 40px 40px 40px;
+    box-sizing: content-box;
+  }
+
+  .box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 90px 40px 40px 40px;
+    backface-visibility: hidden;
+    background: linear-gradient(230deg, rgba(53, 57, 74, 0) 0%, rgb(0, 0, 0) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='rgba(53, 57, 74, 0)', endColorstr='rgb(0, 0, 0)', GradientType=1);
+    box-shadow: -15px 15px 15px rgba(0, 0, 0, .4);
+    transition: all 1s;
+  }
+
+  .showBox {
+    transform: rotateY(0deg);
+  }
+
+  .hiddenBox {
+    transform: rotateY(180deg);
+  }
+
+
+
+  .bottom {
+    display: flex;
+    height: 42px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+
+    .subBtn {
+      padding: 10px 50px;
+      border: 2px solid #4FA1D9;
+      border-radius: 50px;
+      background: transparent;
+      font-size: 11px;
+      color: #4FA1D9;
+      transition: all .2s;
+
+      &:hover {
+        color: white;
+        background: #4FA1D9;
+        cursor: pointer;
+      }
+    }
+
+    .switchBtn {
+      color: #D3D7F7;
+
+      &:hover {
+        color: #d9dafd;
+        cursor: pointer;
+      }
+    }
+  }
+
+
+
+  .title {
+    height: 60px;
+    color: #D3D7F7;
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 20px;
+    left: 35px;
+    width: 250px;
+    color: #D3D7F7;
+    font-size: 10px;
+  }
+
+  input {
+    color: #61BFFF;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-transition-delay: 99999s;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+  }
+
+  .ant-form-item-label>label {
+    color: #D3D7F7;
+  }
+
+  .ant-input-group-addon {
+    background: transparent;
+    padding: 0;
+    border: none;
+    color: #fff;
+    opacity: 0.8;
+  }
+
+  .ant-input-group-addon .iconfont {
+    display: inline-block;
+    width: 30px;
+    transition: all .3s;
+    opacity: 0.6;
+  }
+
+  .ant-form-item {
+    margin-bottom: 10px;
+  }
+
+  .ant-form-explain {
+    position: absolute;
+    z-index: 99;
+    left: 110%;
+    top: 0;
+    height: 41px;
+  }
+}
+
+.login-notification {
+  background: transparent;
+  border: 1px solid #78ff7f;
+  color: #00f815;
+  width: 250px;
+  height: 80px;
+  float: right;
+  margin-right: 20px;
+}
+
+.login-notification .ant-notification-notice-message {
+  color: #885943;
+}
+
+.login-notification .ant-notification-notice-close {
+  color: #885943;
+}

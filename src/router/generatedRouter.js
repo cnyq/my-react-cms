@@ -1,7 +1,7 @@
 /*
  * @Author       : yanqun
  * @Date         : 2021-02-05 11:13:01
- * @LastEditTime : 2021-02-20 15:25:53
+ * @LastEditTime : 2021-02-21 14:56:34
  * @Description  : 获取pages文件夹下的所有文件生成路由对象，components文件下的js不载入路由对象;注：本架子使用文件名作为路由
  */
 import loadable from '@/router/loadable' //组件进行异步加载处理
@@ -10,7 +10,7 @@ const generatedRouter = []
 const routeGather = []
 const generatedRouterMap = {}
 const modulesList = []
-const shieldRouter = ['demo'] //屏蔽文件名为demo的文件导入路由对象
+const shieldRouter = ['demo'] //屏蔽文件名包含demo的文件导入路由对象
 const modulesFiles = require.context('@/views', true, /\.js$/, 'lazy')
 
 modulesFiles.keys().forEach((modulePath) => {
