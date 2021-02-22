@@ -6,7 +6,6 @@ const devMode = process.env.NODE_ENV !== 'production'
 // const os = require('os')
 // const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length })
 console.log(devMode, process.env.NODE_ENV, 'devMode')
-
 function resolve(relatedPath) {
   return path.join(__dirname, relatedPath)
 }

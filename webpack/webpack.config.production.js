@@ -37,6 +37,7 @@ const webpackConfigProd = {
 	plugins: [
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('production'),
+			'process.env.APP_BASE_API': '/cms/',
 			IS_DEVELOPMETN: false,
 		}),
 		new HtmlWebpackPlugin({

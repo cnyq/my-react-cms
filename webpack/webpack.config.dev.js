@@ -16,6 +16,7 @@ const webpackConfigDev = {
     // 定义环境变量为开发环境
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
+      'process.env.APP_BASE_API': JSON.stringify('/cms/'),
       IS_DEVELOPMETN: true,
     }),
     // 将打包后的资源注入到html文件内    
@@ -32,7 +33,17 @@ const webpackConfigDev = {
     historyApiFallback: false,
     open: true,
     hot: true,
-    port: 9527,
+    port: 1207,
+    // 代理服务器配置
+    proxy: {
+      '/cms': {
+        target: 'http://localhost:9527',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/cms': '/cms'
+        }
+      },
+    }
   },
 
 }

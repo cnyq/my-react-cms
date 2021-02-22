@@ -141,10 +141,31 @@
   }
 }
 
+.canvasBg {
+  background: #000;
+  overflow: hidden;
+
+  canvas {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  #c1 {
+    opacity: 0;
+  }
+
+  #c2 {
+    background: #000;
+  }
+}
+
 .login-notification {
-  background: transparent;
+  background: rgba(0,0,0,.3);
   border: 1px solid #78ff7f;
-  color: #00f815;
+  color: #78ff7f;
   width: 250px;
   height: 80px;
   float: right;
@@ -152,9 +173,9 @@
 }
 
 .login-notification .ant-notification-notice-message {
-  color: #885943;
+  color: #78ff7f;
 }
 
 .login-notification .ant-notification-notice-close {
-  color: #885943;
+  color: #78ff7f;
 }
