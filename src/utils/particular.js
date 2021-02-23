@@ -1,11 +1,11 @@
 /*
  * @Author       : yanqun
  * @Date         : 2021-02-20 10:42:48
- * @LastEditTime : 2021-02-20 15:32:44
+ * @LastEditTime : 2021-02-23 10:33:17
  * @Description  : 页面私有方法
  */
 
-import { menus as MENUS } from '@/components/assets/mock'
+import { menus as MENUS } from '@/components/mock/menu'
 import { param2Obj } from '@/utils/common'
 
 export function disposeBreadcrumb(path, search = '') {

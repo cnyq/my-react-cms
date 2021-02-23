@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "antd": "^4.12.2",
+    "axios": "^0.21.1",
+    "js-cookie": "^2.2.1",
     "mobx": "^6.1.5",
     "mobx-react": "^7.1.0",
     "nprogress": "^0.2.0",

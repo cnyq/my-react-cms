@@ -1,38 +1,51 @@
 import React, { Component } from 'react'
-import { isAuthenticated } from '@/utils/session'
+import { getToken, getUserInfo } from '@/utils/auth'
 import { notification } from 'antd'
 import './login.scss'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
+import { withRouter } from 'react-router-dom'
 import CanvasBg from '@/utils/canvasBg'
 let canvasBg = new CanvasBg('c1', 'c2')
+@withRouter
 export default class Index extends Component {
   state = {
     showBox: 'login'
   }
   componentDidMount() {
-    if (isAuthenticated()) {
-      this.props.history.push('/')
-      return
-    }
+    console.log('componentDidMount')
+    // if (getToken() && getUserInfo()) {
+    //   this.props.history.push('/')
+    //   return
+    // }
     canvasBg.init()
     notification.open({
       message: <ul><li>体验账号：123456</li><li>体验密码：123456</li></ul>,
       duration: 0,
       className: 'login-notification'
     })
+    window.addEventListener('resize', this.onWindowResize)
   }
   componentWillUnmount() {
+    console.log('componentWillUnmount')
     canvasBg.unmount()
     notification.destroy()
+    window.removeEventListener('resize', this.onWindowResize)
   }
   clickBg = () => {
     canvasBg.create()
+  }
+  onWindowResize = () => {
+    canvasBg.resize()
   }
   switchShowBox = (box) => {
     this.setState({
       showBox: box
     })
+  }
+  toHome = () => {
+    console.log('toHome',this.props.history)
+    this.props.history.replace('/')
   }
   render() {
     const { showBox } = this.state
@@ -45,7 +58,7 @@ export default class Index extends Component {
         <div className='container'>
           <LoginForm
             className={showBox === 'login' ? 'box showBox' : 'box hiddenBox'}
-            switchShowBox={this.switchShowBox} />
+            switchShowBox={this.switchShowBox} toHome={this.toHome}/>
           <RegisterForm
             className={showBox === 'register' ? 'box showBox' : 'box hiddenBox'}
             switchShowBox={this.switchShowBox} />

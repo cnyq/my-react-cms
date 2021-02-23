@@ -11,7 +11,7 @@ class Router extends Component {
       <Switch>
         <Route path='/login' component={Login}/>
         <Route path='/404' component={ErrorPage}/>
-        <PrivateRoute path='/' component={Index}/>
+        <Route path='/' component={Index}/>
       </Switch>
     )
   }

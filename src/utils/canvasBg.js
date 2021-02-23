@@ -105,13 +105,13 @@ export default class CanvasBg {
     const c2 = document.getElementById(this.id2)
     cw = c1.width = c2.width = window.innerWidth,
       ch = c1.height = c2.height = window.innerHeight;
+    this.create();
   }
   unmount = () => {
     window.cancelAnimationFrame(myReq);
   }
   init = () => {
     this.resize();
-    this.create();
     this.loop();
   }
 }

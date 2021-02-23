@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Menu, Icon } from 'antd'
 import { Link, withRouter } from 'react-router-dom'
-import { menus as MENUS } from '@/components/assets/mock'
+import { menus as MENUS } from '@/components/mock/menu'
 import {findMenu } from '@/utils/particular'
 const { SubMenu } = Menu;
 @withRouter

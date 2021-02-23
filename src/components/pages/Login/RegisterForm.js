@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Input } from 'antd'
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
-const layout = {
-  labelCol: { span: 6 },
-  wrapperCol: { span: 18 },
-};
 class RegisterForm extends Component {
   gobackLogin = () => {
     this.props.switchShowBox('login')
@@ -13,20 +10,19 @@ class RegisterForm extends Component {
     return (
       <div className={this.props.className}>
         <h3 className='title'>管理员注册</h3>
-        <Form {...layout}>
-          <Form.Item label="用户名"
+        <Form>
+          <Form.Item
             name="registerUsername"
           >
-            <Input
-              placeholder='请输入用户名'
-            />
+             <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="请输入用户名" />
           </Form.Item>
-          <Form.Item label="密码"
+          <Form.Item
             name="registersPassword"
           >
-            <Input
-              placeholder='请输入密码'
-              type='password'
+             <Input
+              prefix={<LockOutlined className="site-form-item-icon" />}
+              type="password"
+              placeholder="请输入密码"
             />
           </Form.Item>
           <div className='bottom'>

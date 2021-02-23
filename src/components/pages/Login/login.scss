@@ -47,20 +47,20 @@
     height: 42px;
     justify-content: space-between;
     align-items: center;
-    margin-top: 40px;
+    padding-top: 40px;
 
     .subBtn {
       padding: 10px 50px;
-      border: 2px solid #4FA1D9;
+      border: 2px solid #767eb9;
       border-radius: 50px;
       background: transparent;
       font-size: 11px;
-      color: #4FA1D9;
+      color: #D3D7F7;
       transition: all .2s;
 
       &:hover {
         color: white;
-        background: #4FA1D9;
+        background: #767eb9;
         cursor: pointer;
       }
     }
@@ -94,11 +94,20 @@
   }
 
   input {
-    color: #61BFFF;
+    color: #D3D7F7;
     border: none;
     outline: none;
     box-shadow: none;
     background: transparent;
+  }
+
+  .ant-input-affix-wrapper{
+    background: rgba(255,255,255,.2);
+    border: none;
+    box-shadow: none;
+    .anticon{
+      color: #D3D7F7;
+    }
   }
 
   input:-webkit-autofill,
@@ -129,7 +138,7 @@
   }
 
   .ant-form-item {
-    margin-bottom: 10px;
+    // margin-bottom: 10px;
   }
 
   .ant-form-explain {
@@ -164,8 +173,8 @@
 
 .login-notification {
   background: rgba(0,0,0,.3);
-  border: 1px solid #78ff7f;
-  color: #78ff7f;
+  border: 1px solid #D3D7F7;
+  color: #D3D7F7;
   width: 250px;
   height: 80px;
   float: right;
@@ -173,9 +182,9 @@
 }
 
 .login-notification .ant-notification-notice-message {
-  color: #78ff7f;
+  color: #D3D7F7;
 }
 
 .login-notification .ant-notification-notice-close {
-  color: #78ff7f;
+  color: #D3D7F7;
 }

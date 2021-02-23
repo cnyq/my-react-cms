@@ -3,17 +3,33 @@ import { Link, withRouter } from 'react-router-dom'
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UserOutlined
+  UserOutlined,
+  ExclamationCircleOutlined
 } from '@ant-design/icons';
-import { Avatar, Breadcrumb, Menu, Dropdown, Button } from 'antd'
+import { Avatar, Breadcrumb, Menu, Dropdown, Modal } from 'antd'
 import { disposeBreadcrumb } from '@/utils/particular'
-@withRouter
+import { inject, observer } from 'mobx-react'
+@withRouter @inject('user') @observer
 export default class Header extends Component {
   state = {
     breadcrumbList: []
   }
   toggle = () => {
     this.props.onToggle()
+  }
+  loginOut = () => {
+    Modal.confirm({
+      title: '是否退出',
+      icon: <ExclamationCircleOutlined />,
+      okText: '退出',
+      cancelText: '取消',
+      onOk:()=>{
+        this.props.user.resetToken()
+        this.props.user.removeUserInfo()
+        console.log(this.props.history)
+        this.props.history.replace('/login')
+      }
+    });
   }
   menuIcon = () => {
     if (this.props.collapsed) {
@@ -38,7 +54,7 @@ export default class Header extends Component {
     const menu = (
       <Menu>
         <Menu.Item>
-          <span >退出登录</span>
+          <span onClick={this.loginOut}>退出登录</span>
         </Menu.Item>
       </Menu>
     );

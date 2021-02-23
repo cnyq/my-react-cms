@@ -1,7 +1,7 @@
 /*
  * @Author       : yanqun
  * @Date         : 2021-02-05 11:13:01
- * @LastEditTime : 2021-02-21 14:56:34
+ * @LastEditTime : 2021-02-23 17:01:12
  * @Description  : 获取pages文件夹下的所有文件生成路由对象，components文件下的js不载入路由对象;注：本架子使用文件名作为路由
  */
 import loadable from '@/router/loadable' //组件进行异步加载处理
