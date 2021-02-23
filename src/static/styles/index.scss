@@ -46,11 +46,17 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    .userName {
+      margin-right: 30px;
+      font-weight: bold;
+    }
   }
 
   .ant-layout-content {
     box-sizing: border-box;
     padding: 20px 20px 0 20px;
+
     .main {
       background: #fff;
       height: 100%;
@@ -58,10 +64,12 @@
       padding: 20px;
     }
   }
-  .inlineBotton{
+
+  .inlineBotton {
     margin-right: 20px;
   }
-  .inlineForm{
+
+  .inlineForm {
     margin-bottom: 20px;
   }
 }

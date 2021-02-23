@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Form, Input } from 'antd'
+import { Form, Input, message } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-
+import { Login } from '@/components/http/login'
+import { md5 } from "@/utils/crypto"
 class RegisterForm extends Component {
   gobackLogin = () => {
     this.props.switchShowBox('login')
@@ -26,7 +27,7 @@ class RegisterForm extends Component {
             />
           </Form.Item>
           <div className='bottom'>
-            <span className='subBtn'>注册</span>
+            <span className='subBtn'>注册并登陆</span>
             <span className='switchBtn' onClick={this.gobackLogin}>返回登录</span>
           </div>
         </Form>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { getToken, getUserInfo } from '@/utils/auth'
-import { notification } from 'antd'
+// import { notification } from 'antd'
 import './login.scss'
 import LoginForm from './LoginForm'
 import RegisterForm from './RegisterForm'
@@ -19,17 +18,17 @@ export default class Index extends Component {
     //   return
     // }
     canvasBg.init()
-    notification.open({
-      message: <ul><li>体验账号：123456</li><li>体验密码：123456</li></ul>,
-      duration: 0,
-      className: 'login-notification'
-    })
+    // notification.open({
+    //   message: <ul><li>体验账号：123456</li><li>体验密码：123456</li></ul>,
+    //   duration: 0,
+    //   className: 'login-notification'
+    // })
     window.addEventListener('resize', this.onWindowResize)
   }
   componentWillUnmount() {
     console.log('componentWillUnmount')
     canvasBg.unmount()
-    notification.destroy()
+    // notification.destroy()
     window.removeEventListener('resize', this.onWindowResize)
   }
   clickBg = () => {
@@ -44,7 +43,6 @@ export default class Index extends Component {
     })
   }
   toHome = () => {
-    console.log('toHome',this.props.history)
     this.props.history.replace('/')
   }
   render() {

@@ -75,6 +75,7 @@ export default class Header extends Component {
           </Breadcrumb>
         </div>
         <div className="header-ri">
+          <span className="userName">用户：{this.props.user.userInfo.username}</span>
           <Dropdown overlay={menu} placement="bottomRight" arrow trigger="click">
             <Avatar shape="square" icon={<UserOutlined />} />
           </Dropdown>

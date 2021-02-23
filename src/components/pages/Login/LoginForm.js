@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Input } from 'antd'
+import { Form, Input, message } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Login } from '@/components/http/login'
 import { md5 } from "@/utils/crypto"
@@ -9,6 +9,7 @@ import { inject, observer } from 'mobx-react'
 class LoginForm extends Component {
   formRef = React.createRef();
   register = () => {
+    this.formRef.current.resetFields();
     this.props.switchShowBox('register')
   }
   login = () => {
@@ -23,10 +24,7 @@ class LoginForm extends Component {
           this.props.user.setUserInfo(res.data.userInfo)
           this.props.toHome()
         } else {
-          this.$message({
-            message: res.data.hint,
-            type: "error",
-          })
+          message.error(res.data.hint)
         }
       })
     })

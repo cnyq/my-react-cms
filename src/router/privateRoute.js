@@ -3,10 +3,10 @@ import { Route, Redirect } from 'react-router-dom'
 import {routeGather} from '@/router/generatedRouter'
 import { getToken, getUserInfo } from '@/utils/auth'
 
-const isLogin = getToken() && getUserInfo()
-console.log(isLogin,'isLogin')
 class PrivateRoute extends Component {
   render() {
+    const isLogin = getToken() && getUserInfo()
+    console.log('PrivateRoute',isLogin)
     const { component,location } = this.props;
     const { pathname } = location;
     const correctRouter = routeGather.find(
@@ -26,7 +26,7 @@ class PrivateRoute extends Component {
           return (<Route exact path={pathname} component={component} />);
         }
       }else{
-        return (<Route exact path={pathname} component={component} />);
+        return <Redirect to="/login" />;
       }
     }else{
       return <Redirect to="/404" />;
