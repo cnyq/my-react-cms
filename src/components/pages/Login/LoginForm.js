@@ -8,7 +8,7 @@ import { inject, observer } from 'mobx-react'
 @inject('user') @observer
 class LoginForm extends Component {
   formRef = React.createRef();
-  register = () => {
+  goback = () => {
     this.formRef.current.resetFields();
     this.props.switchShowBox('register')
   }
@@ -54,7 +54,7 @@ class LoginForm extends Component {
           </Form.Item>
           <div className='bottom'>
             <span className='subBtn' onClick={this.login}>登录</span>
-            <span className='switchBtn' onClick={this.register}>注册</span>
+            <span className='switchBtn' onClick={this.goback}>注册</span>
           </div>
         </Form>
         <div className='footer'>

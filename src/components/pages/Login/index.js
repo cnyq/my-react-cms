@@ -56,10 +56,10 @@ export default class Index extends Component {
         <div className='container'>
           <LoginForm
             className={showBox === 'login' ? 'box showBox' : 'box hiddenBox'}
-            switchShowBox={this.switchShowBox} toHome={this.toHome}/>
+            switchShowBox={this.switchShowBox} toHome={this.toHome} />
           <RegisterForm
             className={showBox === 'register' ? 'box showBox' : 'box hiddenBox'}
-            switchShowBox={this.switchShowBox} />
+            switchShowBox={this.switchShowBox} toHome={this.toHome} />
 
         </div>
       </div>
