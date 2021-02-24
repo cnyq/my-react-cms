@@ -3,6 +3,7 @@ import { Form, Input, Button, DatePicker, Table, Space } from 'antd';
 const { RangePicker } = DatePicker;
 const { Column } = Table;
 import { User } from '@/components/http/user'
+import componentAuth from '@/utils/componentAuth'
 export default class UserList extends Component {
   state = {
     tableList: [],
@@ -64,6 +65,7 @@ export default class UserList extends Component {
     console.log(this.formRef)
   }
   render() {
+    const AuthButton = componentAuth(Button);
     const { tableList, pageNum, pageSize, total } = this.state
     return (
       <div>
@@ -85,6 +87,7 @@ export default class UserList extends Component {
             />
           </Form.Item>
           <Form.Item>
+            <AuthButton auth="2">123</AuthButton>
             <Button type="primary" htmlType="button" className="inlineBotton" onClick={this.query}>查询</Button>
             <Button type="primary" htmlType="button" className="inlineBotton" onClick={this.reset}>重置</Button>
             <Button type="primary" htmlType="button" className="inlineBotton" onClick={this.add}>新增</Button>
