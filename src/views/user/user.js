@@ -4,6 +4,7 @@ const { RangePicker } = DatePicker;
 const { Column } = Table;
 import { User } from '@/components/http/user'
 import componentAuth from '@/utils/componentAuth'
+import { formatTime } from '@/utils/common'
 export default class UserList extends Component {
   state = {
     tableList: [],
@@ -14,8 +15,10 @@ export default class UserList extends Component {
     endTime: 0
   }
   formRef = React.createRef();
+  componentDidMount() {
+    this.query()
+  }
   query = () => {
-    console.log(this.formRef.current.getFieldValue())
     let value = this.formRef.current.getFieldValue(),
       _data = {
         pageNum: this.state.pageNum,
@@ -25,14 +28,12 @@ export default class UserList extends Component {
         endTime: this.state.endTime || ''
       }
     User(_data).then(res => {
-      console.log(res)
       let list = res.data.list.map((it, i) => {
         return {
           ...it,
           key: i
         }
       })
-      console.log(list)
       this.setState({
         tableList: list,
         total: res.data.total
@@ -62,8 +63,10 @@ export default class UserList extends Component {
     this.formRef.current.resetFields();
   }
   add = () => {
-    console.log(this.formRef)
+    console.log(this.props.history)
+    this.props.history.push({ pathname: "/userDetali", search:`type=add` })
   }
+  delUser = () => { }
   render() {
     const AuthButton = componentAuth(Button);
     const { tableList, pageNum, pageSize, total } = this.state
@@ -87,10 +90,9 @@ export default class UserList extends Component {
             />
           </Form.Item>
           <Form.Item>
-            <AuthButton auth="2">123</AuthButton>
-            <Button type="primary" htmlType="button" className="inlineBotton" onClick={this.query}>查询</Button>
-            <Button type="primary" htmlType="button" className="inlineBotton" onClick={this.reset}>重置</Button>
-            <Button type="primary" htmlType="button" className="inlineBotton" onClick={this.add}>新增</Button>
+            <Button type="primary" type="primary" className="inlineBotton" onClick={this.query}>查询</Button>
+            <Button type="primary" type="primary" className="inlineBotton" onClick={this.reset}>重置</Button>
+            <AuthButton auth="1" type="primary" className="inlineBotton" onClick={this.add}>新增</AuthButton>
           </Form.Item>
         </Form>
         <Table
@@ -99,11 +101,10 @@ export default class UserList extends Component {
           pagination={{
             simple: false,
             current: pageNum,
-            position: ['none', 'bottomCenter'],
+            position: ['none', 'bottomLeft'],
             total: total,
             pageSize: pageSize,
             showTotal: (count = total) => {
-              console.log(total, 'total', count)
               return '共' + count + '条数据'
             },
             onChange: (current, pageSize) => {
@@ -112,14 +113,27 @@ export default class UserList extends Component {
           }}
         >
           <Column title="名称" dataIndex="username" key="username" />
-          <Column title="注册时间" dataIndex="create_time" key="create_time" />
+          <Column title="注册时间" key="create_time"
+            render={(text, record) => (
+              <Space size="middle">
+                {formatTime(record.create_time, 'yyyy年MM月dd日')}
+              </Space>
+            )}
+          />
+          <Column title="用户类型" key="create_time"
+            render={(text, record) => (
+              <Space size="middle">
+                {record.auth_status == 1 ? '超级管理员' : record.auth_status == 2 ? '管理员' : '游客'}
+              </Space>
+            )}
+          />
           <Column
-            title="操作权限"
+            title="操作"
             key="action"
             render={(text, record) => (
               <Space size="middle">
-                <a>开启</a>
-                <a>删除</a>
+                <AuthButton auth="1" type="link" onClick={this.delUser}>编辑</AuthButton>
+                {record.auth_status == 1 ? null : <AuthButton auth="1" type="link" onClick={this.delUser}>删除</AuthButton>}
               </Space>
             )}
           />

@@ -14,7 +14,7 @@ class Sider extends Component {
     const { pathname } = nextProps ? nextProps.location : this.props.location
     let { firstMenu } = findMenu(pathname)
     this.setState({
-      selectedKeys: [pathname],
+      selectedKeys: [pathname.replace("Detali", "")],
       openKeys: firstMenu && firstMenu.subs ? [firstMenu.key] : []
     })
   }

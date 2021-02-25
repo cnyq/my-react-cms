@@ -55,7 +55,6 @@ service.interceptors.response.use(
       Message.error(res.msg || 'Error');
       return Promise.reject(new Error(res.msg || 'Error'))
     }
-    console.log(router)
     return res
   },
   error => {

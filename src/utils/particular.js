@@ -1,7 +1,7 @@
 /*
  * @Author       : yanqun
  * @Date         : 2021-02-20 10:42:48
- * @LastEditTime : 2021-02-23 10:33:17
+ * @LastEditTime : 2021-02-25 22:58:33
  * @Description  : 页面私有方法
  */
 
@@ -64,7 +64,8 @@ export function disposeBreadcrumb(path, search = '') {
   return breadcrumb
 }
 
-export function findMenu(pathname) {
+export function findMenu(url) {
+  let pathname = url.replace("Detali", "")
   let childMenu = {}
   let firstMenu = MENUS.find(it => {
     if (it.key == pathname) {

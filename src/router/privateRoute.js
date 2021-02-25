@@ -6,7 +6,7 @@ import { getToken, getUserInfo } from '@/utils/auth'
 class PrivateRoute extends Component {
   render() {
     const isLogin = getToken() && getUserInfo()
-    console.log('PrivateRoute',isLogin)
+    // console.log('PrivateRoute',isLogin)
     const { component,location } = this.props;
     const { pathname } = location;
     const correctRouter = routeGather.find(
