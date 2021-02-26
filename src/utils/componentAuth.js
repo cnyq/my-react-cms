@@ -8,7 +8,7 @@ const componentAuth = ComposedComponent => class WrapComponent extends Component
   // }
   render() {
     const auth_status = store.user.userInfo.auth_status || 3
-    console.log(this.props.auth, 'auth_status', auth_status)
+    // console.log(this.props.auth, 'auth_status', auth_status)
     const auth = this.props.auth || 1
     if (auth_status <= auth) {
       return <ComposedComponent  {...this.props} />;

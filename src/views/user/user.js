@@ -9,7 +9,7 @@ export default class UserList extends Component {
   state = {
     tableList: [],
     pageNum: 1,
-    pageSize: 2,
+    pageSize: 10,
     total: 0,
     startTime: 0,
     endTime: 0
@@ -41,12 +41,12 @@ export default class UserList extends Component {
     })
   }
   onPageChange = (current, pageSize) => {
-    console.log(current, pageSize)
     this.setState({
       pageNum: current,
       pageSize: pageSize
+    }, () => {
+      this.query()
     })
-    this.query()
   }
   onRangePickerChange = (value, dateString) => {
     console.log('onRangePickerChange', value, dateString)
@@ -64,7 +64,7 @@ export default class UserList extends Component {
   }
   add = () => {
     console.log(this.props.history)
-    this.props.history.push({ pathname: "/userDetali", search:`type=add` })
+    this.props.history.push({ pathname: "/userDetali", search: `type=add` })
   }
   delUser = () => { }
   render() {
