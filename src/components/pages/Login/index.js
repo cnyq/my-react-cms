@@ -6,17 +6,18 @@ import RegisterForm from './RegisterForm'
 import { withRouter } from 'react-router-dom'
 import CanvasBg from '@/utils/canvasBg'
 let canvasBg = new CanvasBg('c1', 'c2')
+import { getToken, getUserInfo } from '@/utils/auth'
 @withRouter
 export default class Index extends Component {
   state = {
     showBox: 'login'
   }
   componentDidMount() {
-    console.log('componentDidMount')
-    // if (getToken() && getUserInfo()) {
-    //   this.props.history.push('/')
-    //   return
-    // }
+    // console.log('componentDidMount-login',this.props.history)
+    if (getToken() && getUserInfo() && this.props.history.action == "POP") {
+      this.props.history.push('/')
+      return
+    }
     canvasBg.init()
     // notification.open({
     //   message: <ul><li>体验账号：123456</li><li>体验密码：123456</li></ul>,
