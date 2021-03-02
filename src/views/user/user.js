@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Form, Input, Button, DatePicker, Table, Space } from 'antd';
+import { Form, Input, Button, DatePicker, Table, Space, Modal, message } from 'antd';
 const { RangePicker } = DatePicker;
 const { Column } = Table;
-import { User,UserAdd } from '@/components/http/user'
+import { User, UserDel } from '@/components/http/user'
 import componentAuth from '@/utils/componentAuth'
 import { formatTime } from '@/utils/common'
 export default class UserList extends Component {
@@ -70,8 +70,22 @@ export default class UserList extends Component {
     console.log(this.props.history)
     this.props.history.push({ pathname: "/userDetali", search: `type=edit`, state: { params } })
   }
-  delUser = () => {
-    UserAdd()
+  delUser = (data) => {
+    Modal.confirm({
+      title: `是否删除--  ${data.username}  --用户`,
+      okText: '删除',
+      cancelText: '取消',
+      onOk: () => {
+        UserDel(data).then(res => {
+          let { status, hint } = res.data
+          if (status == 1) {
+            message.success(hint, 1, () => { this.query() });
+          } else {
+            message.error(hint, 1);
+          }
+        })
+      }
+    });
   }
   render() {
     const AuthButton = componentAuth(Button);
@@ -139,7 +153,7 @@ export default class UserList extends Component {
             render={(text, record) => (
               <Space size="middle">
                 <AuthButton auth="1" type="link" onClick={this.edit.bind(this, record)}>编辑</AuthButton>
-                {record.auth_status == 1 ? null : <AuthButton auth="1" type="link" onClick={this.delUser}>删除</AuthButton>}
+                {record.auth_status == 1 ? null : <AuthButton auth="1" type="link" onClick={this.delUser.bind(this, record)}>删除</AuthButton>}
               </Space>
             )}
           />

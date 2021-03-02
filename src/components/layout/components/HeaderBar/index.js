@@ -23,7 +23,7 @@ export default class Header extends Component {
       icon: <ExclamationCircleOutlined />,
       okText: '退出',
       cancelText: '取消',
-      onOk:()=>{
+      onOk: () => {
         this.props.user.resetToken()
         this.props.user.removeUserInfo()
         console.log(this.props.history)
@@ -44,6 +44,12 @@ export default class Header extends Component {
       breadcrumbList: disposeBreadcrumb(pathname, search)
     })
   }
+  changePassword = () => {
+    let { pathname } = this.props.location
+    if (pathname != '/accountManage') {
+      this.props.history.push('/accountManage')
+    }
+  }
   componentDidMount() {
     this.changeMenuKeys()
   }
@@ -53,6 +59,9 @@ export default class Header extends Component {
   render() {
     const menu = (
       <Menu>
+        <Menu.Item>
+          <span onClick={this.changePassword}>修改密码</span>
+        </Menu.Item>
         <Menu.Item>
           <span onClick={this.loginOut}>退出登录</span>
         </Menu.Item>
