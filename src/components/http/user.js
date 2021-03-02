@@ -12,3 +12,7 @@ export const UserEdit = (data) => {
 export const UserDel = (data) => {
   return HTTP.post("/userDel", data)
 }
+
+export const PostwordChange = (data) => {
+  return HTTP.post("/postwordChange", data)
+}
